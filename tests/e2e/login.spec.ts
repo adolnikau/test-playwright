@@ -6,11 +6,11 @@ test.describe("Login page tests", () => {
         await loginPage.goto()
     });
 
-    test('should login with correct credentials', async ({loginPage, headerPage}) => {
+    test('should login with correct credentials', async ({loginPage, benefitsPage}) => {
         // When
         await loginPage.login()
         // Then
-        await expect(headerPage.logoutBtn).toBeVisible()
+        await expect(benefitsPage.employeesTableRows).not.toHaveCount(0)
     });
 
     [
