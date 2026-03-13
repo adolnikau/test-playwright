@@ -76,20 +76,20 @@ test.describe(`Test Employees POST request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect.soft(errorMessages).toContainEqual({"errorMessage": "The firstName field is required.", "memberNames": ["firstName"]})
-        expect.soft(errorMessages).toContainEqual({"errorMessage": "The lastName field is required.", "memberNames": ["lastName"]})
+        expect.soft(errorMessages).toContainEqual({"errorMessage": "The FirstName field is required.", "memberNames": ["FirstName"]})
+        expect.soft(errorMessages).toContainEqual({"errorMessage": "The LastName field is required.", "memberNames": ["LastName"]})
     });
 
     [
         {
             testName: "empty",
             firstName: "",
-            errorMessage: "The firstName field is required.",
+            errorMessage: "The FirstName field is required.",
         },
         {
             testName: "longer than 50 symbols",
             firstName: "too_long_name_too_long_name_too_long_name_too_long1",
-            errorMessage: "The field firstName must be a string with a maximum length of 50.",
+            errorMessage: "The field FirstName must be a string with a maximum length of 50.",
         },
     ].forEach(({ testName, firstName, errorMessage }) =>
     {
@@ -107,7 +107,7 @@ test.describe(`Test Employees POST request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["firstName"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["FirstName"]})
         });
     });
 
@@ -115,12 +115,12 @@ test.describe(`Test Employees POST request`, () => {
         {
             testName: "empty",
             lastName: "",
-            errorMessage: "The lastName field is required.",
+            errorMessage: "The LastName field is required.",
         },
         {
             testName: "longer than 50 symbols",
             lastName: "too_long_name_too_long_name_too_long_name_too_long1",
-            errorMessage: "The field lastName must be a string with a maximum length of 50.",
+            errorMessage: "The field LastName must be a string with a maximum length of 50.",
         },
     ].forEach(({ testName, lastName, errorMessage }) =>
     {
@@ -138,7 +138,7 @@ test.describe(`Test Employees POST request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["lastName"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["LastName"]})
         });
     });
 
@@ -146,12 +146,12 @@ test.describe(`Test Employees POST request`, () => {
         {
             testName: "less than 0",
             dependants: -1,
-            errorMessage: "The field dependants must be between 0 and 32.",
+            errorMessage: "The field Dependants must be between 0 and 32.",
         },
         {
             testName: "more than 32",
             dependants: 33,
-            errorMessage: "The field dependants must be between 0 and 32.",
+            errorMessage: "The field Dependants must be between 0 and 32.",
         },
     ].forEach(({ testName, dependants, errorMessage }) =>
     {
@@ -169,7 +169,7 @@ test.describe(`Test Employees POST request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["dependants"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["Dependants"]})
         });
     });
 
@@ -188,7 +188,7 @@ test.describe(`Test Employees POST request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect(errorMessages).toContainEqual({errorMessage: "The salary dependants must be bigger than 0", memberNames: ["salary"]})
+        expect(errorMessages).toContainEqual({errorMessage: "The salary must be bigger than 0", memberNames: ["Salary"]})
     });
 
     test(`should not create an employee when expiration is in the past`, async ({createEmployee}) => {
@@ -209,7 +209,7 @@ test.describe(`Test Employees POST request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect(errorMessages).toContainEqual({errorMessage: "The expiration date must not be in the past", memberNames: ["expiration"]})
+        expect(errorMessages).toContainEqual({errorMessage: "The expiration date must not be in the past", memberNames: ["Expiration"]})
     });
 });
 
@@ -328,20 +328,20 @@ test.describe(`Test Employees PUT request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect.soft(errorMessages).toContainEqual({"errorMessage": "The firstName field is required.", "memberNames": ["firstName"]})
-        expect.soft(errorMessages).toContainEqual({"errorMessage": "The lastName field is required.", "memberNames": ["lastName"]})
+        expect.soft(errorMessages).toContainEqual({"errorMessage": "The FirstName field is required.", "memberNames": ["FirstName"]})
+        expect.soft(errorMessages).toContainEqual({"errorMessage": "The LastName field is required.", "memberNames": ["LastName"]})
     });
 
     [
         {
             testName: "empty",
             firstName: "",
-            errorMessage: "The firstName field is required.",
+            errorMessage: "The FirstName field is required.",
         },
         {
             testName: "longer than 50 symbols",
             firstName: "too_long_name_too_long_name_too_long_name_too_long1",
-            errorMessage: "The field firstName must be a string with a maximum length of 50.",
+            errorMessage: "The field FirstName must be a string with a maximum length of 50.",
         },
     ].forEach(({ testName, firstName, errorMessage }) => {
         test(`should not update an employee when firstName is invalid (${testName})`, async ({newTestEmployee, employeesApi}) => {
@@ -359,7 +359,7 @@ test.describe(`Test Employees PUT request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["firstName"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["FirstName"]})
         });
     });
 
@@ -367,12 +367,12 @@ test.describe(`Test Employees PUT request`, () => {
         {
             testName: "empty",
             lastName: "",
-            errorMessage: "The lastName field is required.",
+            errorMessage: "The LastName field is required.",
         },
         {
             testName: "longer than 50 symbols",
             lastName: "too_long_name_too_long_name_too_long_name_too_long1",
-            errorMessage: "The field lastName must be a string with a maximum length of 50.",
+            errorMessage: "The field LastName must be a string with a maximum length of 50.",
         },
     ].forEach(({ testName, lastName, errorMessage }) => {
         test(`should not update an employee when lastName is invalid (${testName})`, async ({newTestEmployee, employeesApi}) => {
@@ -390,7 +390,7 @@ test.describe(`Test Employees PUT request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["lastName"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["LastName"]})
         });
     });
 
@@ -398,12 +398,12 @@ test.describe(`Test Employees PUT request`, () => {
         {
             testName: "less than 0",
             dependants: -1,
-            errorMessage: "The field dependants must be between 0 and 32.",
+            errorMessage: "The field Dependants must be between 0 and 32.",
         },
         {
             testName: "more than 32",
             dependants: 33,
-            errorMessage: "The field dependants must be between 0 and 32.",
+            errorMessage: "The field Dependants must be between 0 and 32.",
         },
     ].forEach(({ testName, dependants, errorMessage }) => {
         test(`should not update an employee when dependants number is invalid (${testName})`, async ({newTestEmployee, employeesApi}) => {
@@ -421,7 +421,7 @@ test.describe(`Test Employees PUT request`, () => {
             // Then
             expect(response.status()).toBe(400)
             const errorMessages = ValidationErrorListSchema.parse(await response.json());
-            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["dependants"]})
+            expect(errorMessages).toContainEqual({errorMessage: errorMessage, memberNames: ["Dependants"]})
         });
     });
 
@@ -441,7 +441,7 @@ test.describe(`Test Employees PUT request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect(errorMessages).toContainEqual({errorMessage: "The salary dependants must be bigger than 0", memberNames: ["salary"]})
+        expect(errorMessages).toContainEqual({errorMessage: "The salary must be bigger than 0", memberNames: ["Salary"]})
     });
 
     test(`should not update an employee when expiration is in the past`, async ({newTestEmployee, employeesApi}) => {
@@ -463,7 +463,7 @@ test.describe(`Test Employees PUT request`, () => {
         // Then
         expect(response.status()).toBe(400)
         const errorMessages = ValidationErrorListSchema.parse(await response.json());
-        expect(errorMessages).toContainEqual({errorMessage: "The expiration date must not be in the past", memberNames: ["expiration"]})
+        expect(errorMessages).toContainEqual({errorMessage: "The Expiration date must not be in the past", memberNames: ["Expiration"]})
     });
 
 });
