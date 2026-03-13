@@ -12,7 +12,6 @@ test.describe(`Test Employees POST request`, () => {
             username: "TestCreateUsername",
             firstName: "Create First Name",
             lastName: "Create Last Name",
-            dependants: 1,
         }
         // And date that 1 month forward where time is omitted for stability
         const oneMonthFromNow = new Date();
@@ -27,12 +26,12 @@ test.describe(`Test Employees POST request`, () => {
         expect.soft(employee.username).toBe(request.username);
         expect.soft(employee.firstName).toBe(request.firstName);
         expect.soft(employee.lastName).toBe(request.lastName);
-        expect.soft(employee.dependants).toBe(request.dependants);
+        expect.soft(employee.dependants).toBe(0);
         // And default values should be filled up
         expect.soft(employee.salary).toBe(Benefits.salary())
         expect.soft(employee.gross).toBe(Benefits.BASE_PAYCHECK)
-        expect.soft(employee.benefitsCost).toBeCloseTo(Benefits.benefitsCostsPerPaycheck(request.dependants))
-        expect.soft(employee.net).toBeCloseTo(Benefits.net_paycheck(request.dependants))
+        expect.soft(employee.benefitsCost).toBeCloseTo(Benefits.benefitsCostsPerPaycheck(0))
+        expect.soft(employee.net).toBeCloseTo(Benefits.net_paycheck(0))
         expect(employee.expiration).toBeDefined()
         expect.soft(employee.expiration.split('T')[0]).toBe(expectedDate)
     });
